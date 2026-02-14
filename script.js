@@ -1,15 +1,20 @@
 const inputs = document.querySelectorAll(".code");
 
-inputs[0].focus();
+// Ensure first input is focused immediately
+window.onload = () => {
+  inputs[0].focus();
+};
 
 inputs.forEach((input, index) => {
 
+  // Move forward on typing
   input.addEventListener("input", () => {
-    if (input.value && index < inputs.length - 1) {
+    if (index < inputs.length - 1 && input.value !== "") {
       inputs[index + 1].focus();
     }
   });
 
+  // Move backward on backspace ALWAYS
   input.addEventListener("keydown", (e) => {
     if (e.key === "Backspace" && index > 0) {
       inputs[index - 1].focus();
